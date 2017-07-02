@@ -24,6 +24,8 @@ $.getJSON("/articles", function(data) {
 $(document).on("click", "p", function() {
   // Empty the notes from the note section
   $("#notes").empty();
+  $("#notes").append("<h4 class='header left-align teal-text'>Notes</h4>");
+          
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
