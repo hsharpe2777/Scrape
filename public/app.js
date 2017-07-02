@@ -8,7 +8,7 @@ $.getJSON("/articles", function(data) {
         var title = data[i].title;
         var link = data[i].link;
 
-        var imgResult = "<div class='card option-card'><div class='card-image imgdiv'><img class='article-img' id='recipe-option-img" + [i] + "' src='" + imgUrl + "'><p data-id='" + data[i]._id + "'class=title>" + title + "</p></div>";
+        var imgResult = "<div class='card option-card'><div class='card-image imgdiv'><img data-id='" + data[i]._id + "' class='article-img' id='recipe-option-img" + [i] + "' src='" + imgUrl + "'><p data-id='" + data[i]._id + "'class=title>" + title + "</p></div>";
 
 
         $("#articles").append(imgResult);
@@ -24,7 +24,6 @@ $.getJSON("/articles", function(data) {
 $(document).on("click", "p", function() {
   // Empty the notes from the note section
   $("#notes").empty();
-  $("#notes").append("<h4 class='header left-align teal-text'>Notes</h4>");
           
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
@@ -37,6 +36,44 @@ $(document).on("click", "p", function() {
     // With that done, add the note information to the page
     .done(function(data) {
       console.log(data);
+      $("#notes").append("<h4 class='header left-align teal-text'>Notes</h4>");
+      // The title of the article
+      $("#notes").append("<h5>" + data.title + "</h5>");
+      // An input to enter a new title
+      $("#notes").append("<input id='titleinput' name='title' placeholder='Enter Title Here'>");
+      // A textarea to add a new note body
+      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      // A button to submit a new note, with the id of the article saved to it
+      $("#notes").append("<button data-id='" + data._id + "' id='savenote' class='waves-effect waves-light btn'>Save Note</button>");
+
+      // If there's a note in the article
+      if (data.note) {
+        // Place the title of the note in the title input
+        $("#titleinput").val(data.note.title);
+        // Place the body of the note in the body textarea
+        $("#bodyinput").val(data.note.body);
+      }
+    });
+});
+
+
+// Whenever someone clicks a p tag
+$(document).on("click", "img", function() {
+  // Empty the notes from the note section
+  $("#notes").empty();
+          
+  // Save the id from the p tag
+  var thisId = $(this).attr("data-id");
+
+  // Now make an ajax call for the Article
+  $.ajax({
+    method: "GET",
+    url: "/articles/" + thisId
+  })
+    // With that done, add the note information to the page
+    .done(function(data) {
+      console.log(data);
+      $("#notes").append("<h4 class='header left-align teal-text'>Notes</h4>");
       // The title of the article
       $("#notes").append("<h5>" + data.title + "</h5>");
       // An input to enter a new title
