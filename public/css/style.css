@@ -1,0 +1,75 @@
+/* Custom Stylesheet */
+
+
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+    padding: 0 15px;
+}
+
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+.article-img {
+    height: 240px;
+    max-width: 280px;
+}
+
+.option-card {
+    max-width: 280px;
+    height: 330px;
+    text-align: center;
+    vertical-align: text-top;
+    float: left;
+    margin-right: 15px;
+}
+
+.imgdiv {
+    height: 300px;
+}
+
+.comments {
+	height:auto;
+	width:700px;
+	border:1px solid #ccc;
+	font:16px/26px Georgia, Garamond, Serif;overflow:auto;
+}
+
+
+/* other */
+
+  #wrapper {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5%;
+      }
+      #articles {
+        display: inline-block;
+        overflow: auto;
+        width: 60%;
+        height: 700px;
+      }
+      #notes {
+        float: right;
+        width: 30%;
+      }
+      textarea, input {
+        display: block;
+        width: 100%;
+        background-color: #fff;
+      }
+      input {
+        height: 36px;
+        font-size: 24px;
+      }
+      textarea {
+        height: 200px;
+        font-size: 18px;
+      }
