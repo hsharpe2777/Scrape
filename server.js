@@ -1,6 +1,5 @@
-/* Showing Mongoose's "Populated" Method (18.3.8)
- * INSTRUCTOR ONLY
- * =============================================== */
+var port = process.env.PORT || 3000;
+
 
 // Dependencies
 var express = require("express");
@@ -32,6 +31,11 @@ app.use(express.static("public"));
 // Database configuration with mongoose
 mongoose.connect("mongodb://localhost/scraper");
 var db = mongoose.connection;
+
+var uristring =
+    process.env.MONGODB_URI ||
+    'mongodb://localhost/scraper';
+
 
 // Show any mongoose errors
 db.on("error", function(error) {
@@ -157,7 +161,7 @@ app.post("/articles/:id", function(req, res) {
 
 
 // Listen on port 3000
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log("App running on port 3000!");
 });
 
