@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/scraper");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/scraper");
 var db = mongoose.connection;
 
 var uristring =
